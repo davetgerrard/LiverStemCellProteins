@@ -20,14 +20,14 @@ topTerms <- 50
 
 allProtList <- names(prot2go)
 ##INFO: in this GO analysis use all proteins detected in at least one sample. N.B. there are many with zero data.
-detectedProts.common <- stemcommondata$Uniprot.Accession
-geneList.all.binary <- factor(as.integer(allProtList %in% detectedProts.common ))
+detectedProts.Hlc.all <- stemcommon$Uniprot.Accession[row_index.HLC.all]
+geneList.all.binary <- factor(as.integer(allProtList %in% detectedProts.Hlc.all ))
 names(geneList.all.binary) <- allProtList
 
 goDataCollection.all.binary <- list()
 for(thisGOgraph in goGraphs )  {
 	goDataCollection.all.binary[[thisGOgraph]] <- new("topGOdata",
-		description =  "Stem cell common proteins data set",
+		description =  "Stem cell Hlc Samples all proteins data set",
 		ontology = thisGOgraph,
 		allGenes = geneList.all.binary,
 		nodeSize = nodeSizeValue ,
@@ -52,8 +52,8 @@ for(thisGOgraph in goGraphs )  {
 ######## END OF BASE GO ANALYSIS
 
 
-#INFO: output base GO results -> testDetectGOSummary.tab"
-write.table(summaryDetectResults.all[order(summaryDetectResults.all$elimFisher),],file="output/detectGOSummary.common.tab",quote=F,row.names=F,sep="\t")
+#INFO: output base GO results ->
+write.table(summaryDetectResults.all[order(summaryDetectResults.all$elimFisher),],file="output/detectGOSummary.HLC.all.tab",quote=F,row.names=F,sep="\t")
 
 
 
