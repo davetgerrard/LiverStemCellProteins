@@ -13,7 +13,7 @@ print(stemcommondata[excludeIndex, ])
 #dataColumns <- c(grep('H7',names(stemcommondata)),grep('H9',names(stemcommondata)) )
 stem.pca <- prcomp(stemcommondata[,dataColumns])
 
-
+## N.B. re-using the same object name (stem.pca) means that if this script is sourced(), the final one will be 'returned'
 if(output)  {
 
 stem.pca <- prcomp(stemcommondata[,dataColumns])
