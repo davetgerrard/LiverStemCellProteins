@@ -80,7 +80,7 @@ for( i in 1:5)  {
 #INFO: output the plain GO on PC results
 for(i in 1:length(summaryScoreResults)) {
 	outFileName <- paste("GoSummaryByPc",i,"tab", sep=".")
-	write.table(output/summaryScoreResults[[i]],file=outFileName,sep="\t",quote=F,row.names=F) 
+	write.table(summaryScoreResults[[i]],file=paste("output",outFileName,sep="/"),sep="\t",quote=F,row.names=F) 
 	rm(outFileName)
 }
 

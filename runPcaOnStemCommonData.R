@@ -11,7 +11,12 @@ cat("These rows are probable outliers\n")
 print(stemcommondata[excludeIndex, ])
 
 #dataColumns <- c(grep('H7',names(stemcommondata)),grep('H9',names(stemcommondata)) )
-stem.pca <- prcomp(stemcommondata[,dataColumns])
+stem.pca <- princomp(stemcommondata[,dataColumns])
+
+stem.princomp.cor <- princomp(stemcommondata[,dataColumns], cor=T)
+stem.princomp.cor.scores <- cbind(subset(stemcommondata, select=c("Name","Uniprot.Id", "Uniprot.Accession")) ,stem.princomp.cor$scores)
+write.table(stem.princomp.cor.scores, file=paste("output","stem.princomp.cor.scores.tab",sep="/"),row.names=F, quote=F, sep="\t")
+
 
 ## N.B. re-using the same object name (stem.pca) means that if this script is sourced(), the final one will be 'returned'
 if(output)  {
@@ -23,6 +28,7 @@ biplot(stem.pca,choices=c(1,2), col=c("grey","black"),cex=c(0.5,1),xlabs=stemcom
 biplot(stem.pca,choices=c(1,3), col=c("grey","black"),cex=c(0.5,1),xlabs=stemcommondata$Uniprot.Id) ;abline(v=0,lty=2) ; abline(h=0,lty=2) 
 biplot(stem.pca,choices=c(1,4), col=c("grey","black"),cex=c(0.5,1),xlabs=stemcommondata$Uniprot.Id) ;abline(v=0,lty=2) ; abline(h=0,lty=2) 
 biplot(stem.pca,choices=c(1,5), col=c("grey","black"),cex=c(0.5,1),xlabs=stemcommondata$Uniprot.Id) ;abline(v=0,lty=2) ; abline(h=0,lty=2) 
+biplot(stem.pca,choices=c(1,6), col=c("grey","black"),cex=c(0.5,1),xlabs=stemcommondata$Uniprot.Id) ;abline(v=0,lty=2) ; abline(h=0,lty=2) 
 biplot(stem.pca,choices=c(2,3), col=c("grey","black"),cex=c(0.5,1),xlabs=stemcommondata$Uniprot.Id) ;abline(v=0,lty=2) ; abline(h=0,lty=2) 
 dev.off()
 
@@ -33,6 +39,7 @@ biplot(stem.pca,choices=c(1,2), col=c("grey","black"),cex=c(0.5,1),xlabs=stemcom
 biplot(stem.pca,choices=c(1,3), col=c("grey","black"),cex=c(0.5,1),xlabs=stemcommondata$Uniprot.Id) ;abline(v=0,lty=2) ; abline(h=0,lty=2) 
 biplot(stem.pca,choices=c(1,4), col=c("grey","black"),cex=c(0.5,1),xlabs=stemcommondata$Uniprot.Id) ;abline(v=0,lty=2) ; abline(h=0,lty=2) 
 biplot(stem.pca,choices=c(1,5), col=c("grey","black"),cex=c(0.5,1),xlabs=stemcommondata$Uniprot.Id) ;abline(v=0,lty=2) ; abline(h=0,lty=2) 
+biplot(stem.pca,choices=c(1,6), col=c("grey","black"),cex=c(0.5,1),xlabs=stemcommondata$Uniprot.Id) ;abline(v=0,lty=2) ; abline(h=0,lty=2) 
 biplot(stem.pca,choices=c(2,3), col=c("grey","black"),cex=c(0.5,1),xlabs=stemcommondata$Uniprot.Id) ;abline(v=0,lty=2) ; abline(h=0,lty=2) 
 dev.off()
 
@@ -43,6 +50,7 @@ biplot(stem.pca,choices=c(1,2), col=c("grey","black"),cex=c(0.5,1),xlabs=stemcom
 biplot(stem.pca,choices=c(1,3), col=c("grey","black"),cex=c(0.5,1),xlabs=stemcommondata$Uniprot.Id) ;abline(v=0,lty=2) ; abline(h=0,lty=2) 
 biplot(stem.pca,choices=c(1,4), col=c("grey","black"),cex=c(0.5,1),xlabs=stemcommondata$Uniprot.Id) ;abline(v=0,lty=2) ; abline(h=0,lty=2) 
 biplot(stem.pca,choices=c(1,5), col=c("grey","black"),cex=c(0.5,1),xlabs=stemcommondata$Uniprot.Id) ;abline(v=0,lty=2) ; abline(h=0,lty=2) 
+biplot(stem.pca,choices=c(1,6), col=c("grey","black"),cex=c(0.5,1),xlabs=stemcommondata$Uniprot.Id) ;abline(v=0,lty=2) ; abline(h=0,lty=2) 
 biplot(stem.pca,choices=c(2,3), col=c("grey","black"),cex=c(0.5,1),xlabs=stemcommondata$Uniprot.Id) ;abline(v=0,lty=2) ; abline(h=0,lty=2) 
 dev.off()
 	
@@ -54,6 +62,7 @@ biplot(stem.pca,choices=c(1,2), col=c("grey","black"),cex=c(0.5,1),xlabs=stemcom
 biplot(stem.pca,choices=c(1,3), col=c("grey","black"),cex=c(0.5,1),xlabs=stemcommondata$Uniprot.Id[-excludeIndex]) ;abline(v=0,lty=2) ; abline(h=0,lty=2) 
 biplot(stem.pca,choices=c(1,4), col=c("grey","black"),cex=c(0.5,1),xlabs=stemcommondata$Uniprot.Id[-excludeIndex]) ;abline(v=0,lty=2) ; abline(h=0,lty=2) 
 biplot(stem.pca,choices=c(1,5), col=c("grey","black"),cex=c(0.5,1),xlabs=stemcommondata$Uniprot.Id[-excludeIndex]) ;abline(v=0,lty=2) ; abline(h=0,lty=2) 
+biplot(stem.pca,choices=c(1,6), col=c("grey","black"),cex=c(0.5,1),xlabs=stemcommondata$Uniprot.Id[-excludeIndex]) ;abline(v=0,lty=2) ; abline(h=0,lty=2) 
 biplot(stem.pca,choices=c(2,3), col=c("grey","black"),cex=c(0.5,1),xlabs=stemcommondata$Uniprot.Id[-excludeIndex]) ;abline(v=0,lty=2) ; abline(h=0,lty=2) 
 dev.off()
 
@@ -64,6 +73,7 @@ biplot(stem.pca,choices=c(1,2), col=c("grey","black"),cex=c(0.5,1),xlabs=stemcom
 biplot(stem.pca,choices=c(1,3), col=c("grey","black"),cex=c(0.5,1),xlabs=stemcommondata$Uniprot.Id[-excludeIndex]) ;abline(v=0,lty=2) ; abline(h=0,lty=2) 
 biplot(stem.pca,choices=c(1,4), col=c("grey","black"),cex=c(0.5,1),xlabs=stemcommondata$Uniprot.Id[-excludeIndex]) ;abline(v=0,lty=2) ; abline(h=0,lty=2) 
 biplot(stem.pca,choices=c(1,5), col=c("grey","black"),cex=c(0.5,1),xlabs=stemcommondata$Uniprot.Id[-excludeIndex]) ;abline(v=0,lty=2) ; abline(h=0,lty=2) 
+biplot(stem.pca,choices=c(1,6), col=c("grey","black"),cex=c(0.5,1),xlabs=stemcommondata$Uniprot.Id[-excludeIndex]) ;abline(v=0,lty=2) ; abline(h=0,lty=2) 
 biplot(stem.pca,choices=c(2,3), col=c("grey","black"),cex=c(0.5,1),xlabs=stemcommondata$Uniprot.Id[-excludeIndex]) ;abline(v=0,lty=2) ; abline(h=0,lty=2) 
 dev.off()
 

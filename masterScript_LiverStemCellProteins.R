@@ -29,11 +29,11 @@ source("loadProt2Go.R")
 source("C:/Users/dave/LiverProteins/scripts/topGoLiverProteinsUtilities.R")
 source("detectGoStemCommonData.R")		# current version stop before incorporating func clustering.
 
-# source("detectGoStemHlcSamplesCommon.R")
+source("detectGoStemHlcSamplesCommon.R")
 
 ##
 source("runPcaOnStemCommonData.R")	# also ouptuts biplots
 
-#	source("pcScoreGoStemCommonData.R")
+source("scoreGoStemCommonData.R")	# outputs a table of GO score results for each of first 5 PCs.
 #source("")
 #source("")
